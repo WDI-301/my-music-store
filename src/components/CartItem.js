@@ -6,17 +6,14 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItemFromCartAction } from '../reduxStore';
+import { removeFromCartActionCreator } from '../reduxStore/shoppingCartState';
 
 const CartItem = (props) => {
 
   const dispatch = useDispatch();
 
   const removeItem = (id) => {
-    dispatch({
-      type: removeItemFromCartAction,
-      itemId: id,
-    })
+    dispatch(removeFromCartActionCreator(id))
   }
 
   const {

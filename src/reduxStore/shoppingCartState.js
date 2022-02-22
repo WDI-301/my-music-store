@@ -1,16 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit'
-
 const shoppingCartInitialState = [];
 
-export const addItemToCartAction = 'addItemToCart';
+const ADD_ITEM_TO_CART_ACTION = 'mymusicstore.com/addItemToCart';
 
-export const removeItemFromCartAction = 'removeItemFromCart';
+const REMOVE_ITEM_FROM_CART_ACTION = 'mymusicstore.com/removeItemFromCart';
 
-export const emptyCartAction = 'emptyCart';
+const EMPTY_CART_ACTION = 'mymusicstore.com/emptyCart';
 
-const shoppingCartReducer = (state = shoppingCartInitialState, action) => {
+export const shoppingCartReducer = (state = shoppingCartInitialState, action) => {
 
-  if(action.type === addItemToCartAction){
+  if(action.type === ADD_ITEM_TO_CART_ACTION){
     // write some logic to add item to cart
 
     // Check if the item is already in the cart
@@ -29,14 +27,14 @@ const shoppingCartReducer = (state = shoppingCartInitialState, action) => {
     
   }
 
-  if(action.type === removeItemFromCartAction){
+  if(action.type === REMOVE_ITEM_FROM_CART_ACTION){
     // write some logic to remove item fromn cart
 
     return state.filter(item => item.id !== action.itemId)
   }
 
 
-  if(action.type === emptyCartAction){
+  if(action.type === EMPTY_CART_ACTION){
     // write some logic to empty the shopping cart
     return shoppingCartInitialState;
   }
@@ -44,10 +42,24 @@ const shoppingCartReducer = (state = shoppingCartInitialState, action) => {
   return state;
 };
 
-const store = configureStore({
-  reducer: {
-    shoppingCart:  shoppingCartReducer,
-  },
-})
+export const addToCartActionCreator = (product) => {
 
-export default store;
+  return {
+    type: ADD_ITEM_TO_CART_ACTION,
+    cartItem: {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.image
+    }
+  }
+};
+
+export const emptyCartActionCreator = () => ({type: EMPTY_CART_ACTION})
+
+export const removeFromCartActionCreator = (id) => {
+  return {
+    type: REMOVE_ITEM_FROM_CART_ACTION,
+    itemId: id,
+  }
+}

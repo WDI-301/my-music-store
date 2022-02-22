@@ -9,8 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import { shoppingCartContext, useShoppingCart } from '../context/shoppingCartContext';
-import { addItemToCartAction } from '../reduxStore';
+import {  addToCartActionCreator } from '../reduxStore/shoppingCartState';
 
 export default function ProductDisplay(props) {
 
@@ -32,15 +31,7 @@ export default function ProductDisplay(props) {
   const handleAddToCart = () => {
     console.log('This func has been call')
     
-    dispatch({
-      type: addItemToCartAction,
-      cartItem: {
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        image: product.image
-      }
-    })
+    dispatch(addToCartActionCreator(product))
   }
 
   return (

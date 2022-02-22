@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { emptyCartAction } from '../../reduxStore';
+import { emptyCartAction } from '../../reduxStore/shoppingCartState';
 import CartItem from '../CartItem';
 import Layout from '../layout/Layout';
 
