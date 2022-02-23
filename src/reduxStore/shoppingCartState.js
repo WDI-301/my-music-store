@@ -42,9 +42,9 @@ export const shoppingCartReducer = (state = shoppingCartInitialState, action) =>
   return state;
 };
 
-export const addToCartActionCreator = (product) => {
+export const addToCartActionCreator = (product) => (dispatch) => {
 
-  return {
+  dispatch({
     type: ADD_ITEM_TO_CART_ACTION,
     cartItem: {
       id: product.id,
@@ -52,7 +52,7 @@ export const addToCartActionCreator = (product) => {
       price: product.price,
       image: product.image
     }
-  }
+  })
 };
 
 export const emptyCartActionCreator = () => ({type: EMPTY_CART_ACTION})

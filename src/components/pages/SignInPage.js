@@ -10,11 +10,9 @@ const SignInPage = () => {
 
   const user = useSelector(state => state.user);
 
-  const handleUserLogIn = () => fetchUser('fake@user.com', '123')
-  //Put the data on redux
-  .then((data) => {
-    dispatch(signInActionCreator(data))
-  });
+  const handleUserLogIn = () => {
+    dispatch(signInActionCreator())
+  }
   
   if(user){
     return (
