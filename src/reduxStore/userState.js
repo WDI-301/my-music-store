@@ -1,6 +1,6 @@
 import { fetchUser } from "../fetchData";
 
-const SIGN_IN_ACTION = "mymusicstore.com/signIn";
+export const SIGN_IN_ACTION = "mymusicstore.com/signIn";
 
 export const userReducer = (state = null, action) => {
 

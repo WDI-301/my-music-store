@@ -9,6 +9,7 @@ import SignInPage from './components/pages/SignInPage';
 
 import { Provider } from 'react-redux'
 import store from "./reduxStore";
+import CreateUserPage from "./components/pages/CreateUserPage";
 
 export const shoppingCartContext = React.createContext();
 
@@ -28,6 +29,7 @@ function App() {
                 element={<CounterPage />}
               />
               <Route path="sign-in" element={<SignInPage />} />
+              <Route path="sign-up" element={<CreateUserPage />} />
             </Routes>
           </BrowserRouter>
         </div>
