@@ -26,15 +26,15 @@ const Header = () => {
             </Link>
           </Box>
           {/* IF user is logged in show "hi, <user.firstName>" instead */}
+        <Link to="/sign-in">
           { 
             user
               ? `Hi, ${user.firstName}`
               : (
-                <Link to="/sign-in">
                   <Button color="inherit">Sign in</Button>
-                </Link > 
-              )
-          }
+                  )
+                }
+        </Link> 
         <Link to="/cart">
           <IconButton
             size="large"

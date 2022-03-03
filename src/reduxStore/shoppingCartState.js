@@ -1,3 +1,5 @@
+import { SIGN_OUT_ACTION } from "./userState";
+
 const shoppingCartInitialState = [];
 
 const ADD_ITEM_TO_CART_ACTION = 'mymusicstore.com/addItemToCart';
@@ -7,6 +9,10 @@ const REMOVE_ITEM_FROM_CART_ACTION = 'mymusicstore.com/removeItemFromCart';
 const EMPTY_CART_ACTION = 'mymusicstore.com/emptyCart';
 
 export const shoppingCartReducer = (state = shoppingCartInitialState, action) => {
+
+  if(action.type === SIGN_OUT_ACTION){
+    return shoppingCartInitialState;
+  }
 
   if(action.type === ADD_ITEM_TO_CART_ACTION){
     // write some logic to add item to cart

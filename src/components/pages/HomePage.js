@@ -4,6 +4,7 @@ import { fetchProducts } from '../../fetchData';
 import Layout from '../layout/Layout';
 import ProductDisplay from '../ProductDisplay';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 const HomePage = (props) => {
   const [productData, setProductData] = useState();
@@ -11,7 +12,8 @@ const HomePage = (props) => {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    fetchProducts().then(data => setProductData(data))
+    axios.get('http://localhost:5100/get-products')
+    .then(response => setProductData(response.data))
   }, [])
 
   if(!productData){
