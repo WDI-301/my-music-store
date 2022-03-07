@@ -25,15 +25,24 @@ const Header = () => {
               </Typography>
             </Link>
           </Box>
+          <Box mr={4}>
+            {
+              user && user.isAdmin && (
+              <Link to="/admin">
+                  <Button color="inherit">admin</Button>
+              </Link>
+              )
+            }
+          </Box>
           {/* IF user is logged in show "hi, <user.firstName>" instead */}
         <Link to="/sign-in">
           { 
             user
-              ? `Hi, ${user.firstName}`
-              : (
-                  <Button color="inherit">Sign in</Button>
-                  )
-                }
+            ? `Hi, ${user.firstName}`
+            : (
+              <Button color="inherit">Sign in</Button>
+              )
+            }
         </Link> 
         <Link to="/cart">
           <IconButton
@@ -42,7 +51,7 @@ const Header = () => {
             color="inherit"
             aria-label="menu"
             sx={{ ml: 1 }}
-          >
+            >
             <ShoppingCartIcon />
           </IconButton>
         </Link >

@@ -2,6 +2,7 @@ import { Button, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Layout from '../layout/Layout';
 
 // "title": "Blue Drumset",
@@ -20,6 +21,12 @@ const uploadFromInitialState = {
 
 const ProductUploadPage = (props) => {
   const [uploadProductForm, setUploadProductForm] = useState(uploadFromInitialState);
+
+  const user = useSelector(state => state.user);
+
+  if(!user || !user.isAdmin){
+    return "User is not authorized to be in this page";
+  }
 
   const onSubmit = () => {
     try{

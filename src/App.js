@@ -11,6 +11,7 @@ import { Provider } from 'react-redux'
 import store from "./reduxStore";
 import CreateUserPage from "./components/pages/CreateUserPage";
 import ProductUploadPage from "./components/pages/ProductUploadPage";
+import AdminPage from "./components/pages/AdminPage";
 
 export const shoppingCartContext = React.createContext();
 
@@ -32,6 +33,7 @@ function App() {
               <Route path="sign-in" element={<SignInPage />} />
               <Route path="sign-up" element={<CreateUserPage />} />
               <Route path="/admin/product-upload" element={<ProductUploadPage />} />
+              <Route path="/admin" element={<AdminPage />} />
             </Routes>
           </BrowserRouter>
         </div>
