@@ -1,8 +1,8 @@
 import { Button, TextField } from '@mui/material';
 import { Box } from '@mui/system';
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import ApiAxios from '../../apiAxios';
 import Layout from '../layout/Layout';
 
 // "title": "Blue Drumset",
@@ -29,16 +29,18 @@ const ProductUploadPage = (props) => {
   }
 
   const onSubmit = () => {
-    try{
-      axios.post(
-        'http://localhost:5100/upload-product',
-        { productData: {...uploadProductForm, price: Number(uploadProductForm.price) }}
-      ).then(() => {
+
+      ApiAxios.post(
+        '/upload-product',
+        {
+          productData: {...uploadProductForm, price: Number(uploadProductForm.price) },
+        },
+      )
+      .then(() => {
         setUploadProductForm(uploadFromInitialState);
+      }).catch (error => {
+        console.log('error: ', error);
       })
-    } catch (error){
-      console.log('error: ', error);
-    }
   };
 
   return (

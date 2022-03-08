@@ -1,10 +1,9 @@
 import { Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { fetchProducts } from '../../fetchData';
+import { useDispatch } from 'react-redux';
+import ApiAxios from '../../apiAxios';
 import Layout from '../layout/Layout';
 import ProductDisplay from '../ProductDisplay';
-import { useDispatch } from 'react-redux';
-import axios from 'axios';
 
 const HomePage = (props) => {
   const [productData, setProductData] = useState();
@@ -12,7 +11,7 @@ const HomePage = (props) => {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    axios.get('http://localhost:5100/get-products')
+    ApiAxios.get('/get-products')
     .then(response => setProductData(response.data))
   }, [])
 

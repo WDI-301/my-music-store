@@ -1,9 +1,9 @@
 import { Button, TextField } from '@mui/material';
 import { Box } from '@mui/system';
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import ApiAxios from '../../apiAxios';
 import { SIGN_IN_ACTION } from '../../reduxStore/userState';
 import Layout from '../layout/Layout';
 
@@ -31,7 +31,7 @@ const CreateUserPage = () => {
     console.log('signUpForm: ', signUpForm);
 
 
-    axios.post('http://localhost:5100/create-user', { user: signUpForm })
+    ApiAxios.post('/create-user', { user: signUpForm })
     .then(response => {
       console.log('user route was hit successfully!, response: ', response)
 

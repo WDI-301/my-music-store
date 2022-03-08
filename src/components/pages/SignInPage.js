@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ApiAxios from '../../apiAxios';
 import { signInActionCreator, SIGN_IN_ACTION, SIGN_OUT_ACTION } from '../../reduxStore/userState';
 import Layout from '../layout/Layout';
 
@@ -20,24 +21,26 @@ const SignInPage = () => {
   const onSubmit = () => {
     console.log('signInForm: ', signInForm);
 
-    axios.post('http://localhost:5100/sign-in', {
+    ApiAxios.post('/sign-in', {
       userCredentials: signInForm,
-    }).then( response => {
-        
+    })
+    .then(response => {
       console.log("response: ", response.data);
       dispatch({
         type: SIGN_IN_ACTION,
         payload: {
-          userData: response.data,
+          userData: response.data.user,
         }
       })
     })
   };
 
   const handleSignOut = () => {
-    dispatch({ type: SIGN_OUT_ACTION });
+    // actually sign out the user. make a network request to remove the AUTH cookies.
+    ApiAxios.get('/sign-out').then(() => {
+      dispatch({ type: SIGN_OUT_ACTION });
+    }).catch(error => console.log('there was an error signing out'))
 
-    // TODO: actually sign out the user. make a network request to remove the AUTH cookies.
   };
 
   if(user){
